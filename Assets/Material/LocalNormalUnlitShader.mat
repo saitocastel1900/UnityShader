@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UnlitShader
-  m_Shader: {fileID: 4800000, guid: 3809ed279ffc2004db2fb05dc20cf779, type: 3}
+  m_Name: LocalNormalUnlitShader
+  m_Shader: {fileID: 4800000, guid: 89c0dd0909f318a4a9d51bfd2b9364fe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,6 +29,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
-    m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []

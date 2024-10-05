@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UnlitShader
-  m_Shader: {fileID: 4800000, guid: 3809ed279ffc2004db2fb05dc20cf779, type: 3}
+  m_Name: UseCameraDistanceUnlitShader
+  m_Shader: {fileID: 4800000, guid: b34fef09486fe2a44b644aac7846b413, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,12 +23,15 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _FarTex:
+        m_Texture: {fileID: 2800000, guid: a0d9e3ef0e0f23240905ba4663d5734e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 222ff197da402f545b904e24c577de07, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
-    m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
