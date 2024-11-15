@@ -43,13 +43,13 @@ Shader "Unlit/StripeScroll"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv.y = v.uv.y +_Time.x;
+                o.uv = v.uv;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float interpolation = step(frac(i.uv.y * _SliceSpace)-_FillRatio,_Step) ;
+                float interpolation = step(frac((i.uv.y+_Time.x) * _SliceSpace)-_FillRatio,_Step) ;
                 return lerp(_MainColor,_SubColor,interpolation);
             }
             ENDCG

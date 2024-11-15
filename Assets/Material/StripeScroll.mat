@@ -36,7 +36,7 @@ Material:
     - _PropertyName: 4.33
     - _PropertyName01: -0.41
     - _PropertyName02: 1.89
-    - _SliceSpace: 0
+    - _SliceSpace: 8.5
     - _Step: 0.423
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
