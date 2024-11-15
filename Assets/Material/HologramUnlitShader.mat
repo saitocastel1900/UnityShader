@@ -29,13 +29,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FillRatio: 6.69
-    - _FresnelMultiplier: 3
+    - _FillRatio: 3
+    - _FresnelMultiplier: 4
     - _Multiply: 15
     - _SliceSpace: 13.8
     - _StripeMultiply: 21.9
     m_Colors:
-    - _MainColor: {r: 0, g: 0, b: 0.011764706, a: 0}
+    - _MainColor: {r: 0, g: 0, b: 1, a: 0}
+    - _Rotation: {r: 1, g: 1, b: 0, a: 0}
     - _StripeColor: {r: 0, g: 0.7607846, b: 1, a: 1}
-    - _SubColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SubColor: {r: 0, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

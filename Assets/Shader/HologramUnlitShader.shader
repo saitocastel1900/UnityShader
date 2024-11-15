@@ -8,6 +8,7 @@ Shader "Unlit/HologramUnlitShader"
         _StripeMultiply("StripeMultiply",Range(0,100)) = 15
         _FillRatio("FillRatio",Range(1,10)) = 1
         _FresnelMultiplier ("Rim Multiplier", Range(0,100)) = 1.5
+        _Rotation("Rotation", Vector) = (1,1,1)
     }
     SubShader
     {
@@ -32,6 +33,7 @@ Shader "Unlit/HologramUnlitShader"
             float _StripeMultiply;
             float _FillRatio;
             float _FresnelMultiplier;
+            float3 _Rotation;
 
             struct appdata
             {
@@ -55,19 +57,20 @@ Shader "Unlit/HologramUnlitShader"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.localPos = v.vertex.xyz + _Time.x;
                 o.uv = v.uv;
-                 o.normal = normalize(UnityObjectToWorldNormal(v.normal));
-                o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
+                o.normal = normalize(UnityObjectToWorldNormal(v.normal));
+                o.viewDir = normalize(WorldSpaceViewDir(v.vertex));
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float interpolation = frac(i.localPos.y * _StripeMultiply);
+                float interpolation = frac(dot(i.localPos ,normalize(_Rotation)) * _StripeMultiply);
+                float fresnel = pow(1 - abs(dot(i.normal, i.viewDir)), _FresnelMultiplier);
                 
-               float fresnel= pow (1 - abs(dot(i.normal,i.viewDir)),_FresnelMultiplier);
-                float color = pow( 1 - fresnel ,20); 
-                float a = pow(fresnel,0.2);
-                return lerp(_MainColor,_SubColor,fresnel) + _StripeColor * pow(interpolation, _FillRatio);
+                float color = pow(1 - fresnel, 20);
+                float a = pow(fresnel, 0.2);
+
+                return lerp(_MainColor, _SubColor, fresnel) + _StripeColor * pow(interpolation, _FillRatio);
             }
             ENDCG
         }
