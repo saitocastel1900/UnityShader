@@ -7,17 +7,26 @@ Shader "Unlit/IceUnlitShader"
     }
     SubShader
     {
-        Tags
-        {
-            "RenderType"="Transparent"
-             "Queue"="Transparent"
-        }
-
-        Blend SrcAlpha OneMinusSrcAlpha
-        LOD 100
-
         Pass
         {
+            ZWrite ON
+            ColorMask 0
+        }
+        Pass
+        {
+            Tags
+            {
+                "LightMode" = "UniversalForward"
+                "RenderType"="Transparent"
+                "Queue"="Transparent"
+
+            }
+            Blend SrcAlpha OneMinusSrcAlpha
+
+            ZWrite OFF
+            Ztest LEqual
+            LOD 100
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -26,7 +35,7 @@ Shader "Unlit/IceUnlitShader"
 
             float _AlphaMultiplier;
             half4 _Color;
-            
+
             struct appdata
             {
                 float4 vertex : POSITION;
@@ -48,13 +57,13 @@ Shader "Unlit/IceUnlitShader"
                 o.viewDir = normalize(WorldSpaceViewDir(v.vertex));
                 return o;
             }
-            
+
             fixed4 frag(v2f i) : SV_Target
             {
                 float alpha = 1 - abs(dot(i.viewDir, i.worldNormal));
                 alpha *= _AlphaMultiplier;
 
-                return fixed4(1, 1, 1, alpha);
+                return lerp(_Color,fixed4(1,1,1,1),alpha);
             }
             ENDCG
         }
