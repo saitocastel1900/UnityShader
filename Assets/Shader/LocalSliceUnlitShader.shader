@@ -18,9 +18,9 @@ Shader "Unlit/LocalSliceUnlitShader"
             #pragma fragment frag
             #include "UnityCG.cginc"
 
-            float4 _Color;
-            float1 _SliceSpace;
-            float1 _FillRatio;
+            half4 _Color;
+            float _SliceSpace;
+            float _FillRatio;
 
             struct appdata
             {
@@ -44,7 +44,7 @@ Shader "Unlit/LocalSliceUnlitShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                clip(frac(i.localPos.y*_SliceSpace) - _FillRatio);
+                clip(frac(i.localPos.y * _SliceSpace) - 0.5);
                 return _Color;
             }
             ENDCG
